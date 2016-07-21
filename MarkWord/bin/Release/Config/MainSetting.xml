@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<Common xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WorkType>Both</WorkType>
+  <EditFontStr>Consolas</EditFontStr>
+  <EditFontIndex>6</EditFontIndex>
+  <LineBar>true</LineBar>
+  <ShowEndVl>false</ShowEndVl>
+  <ShowTabs>false</ShowTabs>
+  <ShowSpace>false</ShowSpace>
+  <ShowHightLine>false</ShowHightLine>
+  <BackGround>
+    <A>0</A>
+    <R>255</R>
+    <G>255</G>
+    <B>255</B>
+    <ScA>0</ScA>
+    <ScR>1</ScR>
+    <ScG>1</ScG>
+    <ScB>1</ScB>
+  </BackGround>
+  <StyleName>DefaultStyle</StyleName>
+  <Signatrue />
+  <Theme>Office2013</Theme>
+  <FileList />
+</Common>

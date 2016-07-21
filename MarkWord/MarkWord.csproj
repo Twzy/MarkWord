@@ -39,7 +39,7 @@
   <ItemGroup>
     <Reference Include="BlogsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Test\MateBlogTest\BlogsAPI\bin\Release\BlogsAPI.dll</HintPath>
+      <HintPath>..\BlogsAPI\bin\Release\BlogsAPI.dll</HintPath>
     </Reference>
     <Reference Include="CommonMark, Version=0.1.0.0, Culture=neutral, PublicKeyToken=001ef8810438905d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -204,6 +204,8 @@
     <None Include="Resources\test.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="bin\Debug\Config\imges\imagefile.jpg" />
+    <Resource Include="bin\Release\Config\imges\imagefile.jpg" />
     <Resource Include="Images\Bold.png" />
     <Resource Include="Images\Copy.png" />
     <Resource Include="Images\Cut.png" />
@@ -332,6 +334,12 @@
     <Resource Include="Images\oficina_MD.png" />
     <Resource Include="Images\both.png" />
     <Resource Include="Images\full.png" />
+    <Content Include="bin\Debug\Config\markword.html" />
+    <Content Include="bin\Debug\Source\style\DefaultStyle.css" />
+    <Content Include="bin\Debug\Source\style\Style1.css" />
+    <Content Include="bin\Release\Config\markword.html" />
+    <Content Include="bin\Release\Source\style\DefaultStyle.css" />
+    <Content Include="bin\Release\Source\style\Style1.css" />
     <Content Include="HTMLPage1.html" />
     <SplashScreen Include="Images\loadImg.png" />
     <Resource Include="Images\icon.ico" />
