@@ -1,0 +1,534 @@
+﻿<Fluent:RibbonWindow  x:Class="MarkWord.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
+        xmlns:local="clr-namespace:MarkWord"
+        mc:Ignorable="d"
+        Icon="Images\icon.png"
+        Title="MarkWord" Height="660" Width="1100" WindowState="Maximized" PreviewKeyUp="RibbonWindow_PreviewKeyUp" Closing="RibbonWindow_Closing">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Template/TemplateStyle.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Fluent:Ribbon Grid.Row="0" Name="ribbonToolbar"  >
+            <Fluent:Ribbon.QuickAccessItems>
+                <Fluent:QuickAccessMenuItem IsChecked="True">
+                    <Fluent:Button Header="保存" Icon="Images\Save.png" Click="btnSaveDoc_Click"/>
+                </Fluent:QuickAccessMenuItem>
+                <Fluent:QuickAccessMenuItem IsChecked="True">
+                    <Fluent:Button Header="撤销" Icon="Images\undo16.png" Click="btnUndo_Click"/>
+                </Fluent:QuickAccessMenuItem>
+                <Fluent:QuickAccessMenuItem  IsChecked="True">
+                    <Fluent:Button Header="恢复" Icon="Images\redo16.png" Click="btnRedo_Click"/>
+                </Fluent:QuickAccessMenuItem>
+            </Fluent:Ribbon.QuickAccessItems>
+            <Fluent:Ribbon.Menu >
+                <Fluent:Backstage Name="ribBackStage">
+                    <Fluent:BackstageTabControl SelectedIndex="0">
+                        <Fluent:BackstageTabItem Header="打开" >
+                            <TabControl Margin="20,5,20,5" Style="{DynamicResource InnerBackstageTabControlStyle}" SelectedIndex="1">
+                                <Fluent:SeparatorTabItem Header="打开"/>
+                                <TabItem Header="最近使用的文件">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="*" />
+                                        </Grid.RowDefinitions>
+                                        <Fluent:Button Grid.Row="0"
+                                                       Header="打开文件…" 
+                                                       Margin="20,0,0,20"
+                                                       
+                                                       Style="{DynamicResource ButtonBackstageStyle}"
+                                                       HorizontalAlignment="Left"
+                                                       SizeDefinition="Large"  
+                                                       LargeIcon="Images\open32.png" Click="btnOpenDoc_Click" />
+                                        <ListBox Margin="20,0,10,20" Name="lstFileList" Grid.Row="1" BorderThickness="0" FontSize="14" Background="#00000000" MouseDoubleClick="lstFileList_MouseDoubleClick" >
+                                        </ListBox>
+                                    </Grid>
+                                </TabItem>
+                            </TabControl>
+                        </Fluent:BackstageTabItem>
+
+                        <Fluent:Button Header="新增" Name="btnOpNew" Click="btnOpNew_Click"  />
+                        <Fluent:Button Header="保存" Click="btnSaveDoc_Click"/>
+                        <Fluent:Button Header="另存为" Click="btnSaveAsDoc_Click"/>
+                        <Fluent:SeparatorTabItem />
+                        <Fluent:Button Header="导出PDF" Click="btnOutputPdf_Click"/>
+                        <Fluent:Button Header="导出HTML" Click="btnOutputHtml_Click"/>
+                        <Fluent:SeparatorTabItem />
+                        <Fluent:Button Header="打印Markdown" Name="btnPrintMarkdown" Click="btnPrintMarkdown_Click"/>
+                        <Fluent:Button Header="打印" Click="btnPrintDoc_Click"/>
+
+                        <Fluent:SeparatorTabItem />
+                        <Fluent:BackstageTabItem Header="语法帮助">
+                            <WebBrowser Name="WebmarkHelp"></WebBrowser>
+                        </Fluent:BackstageTabItem>
+                        <!--<Fluent:Button Header="帮助" Name="btnHelp"></Fluent:Button>-->
+                        <Fluent:BackstageTabItem Header="信息">
+                            <TabControl Margin="20,5,20,5" Style="{DynamicResource InnerBackstageTabControlStyle}" SelectedIndex="1">
+                                <Fluent:SeparatorTabItem Header="软件信息"/>
+                                <TabItem Header="关于MarkWord" >
+
+                                    <StackPanel Orientation="Vertical"   Margin="20,50,0,0" >
+
+                                        <Label HorizontalAlignment="Left" Height="64" Width="64" >
+                                            <Label.Background>
+                                                <ImageBrush ImageSource="Images\icon.png"/>
+                                            </Label.Background>
+                                        </Label>
+                                        <TextBlock x:Name="label_Copy3"  Text="MarkWord" Foreground="#FF6873E6" FontSize="20"  Margin="0,10,0,0"/>
+                                        <TextBlock  Margin="0,10,0,0">版本：1.5</TextBlock>
+                                        <TextBlock  Margin="0,4,0,0">作者：墨云软件</TextBlock>
+
+                                        <WrapPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                            <TextBlock>E-Mail：</TextBlock>
+                                            <TextBlock Text="ftianwen@126.com" Foreground="Blue" Name="labBogsEmail" MouseUp="labBogsEmail_MouseUp"/>
+                                        </WrapPanel>
+                                        <WrapPanel Orientation="Horizontal"  Margin="0,4,0,0">
+                                            <TextBlock>博客：</TextBlock>
+                                            <TextBlock Foreground="Blue" Cursor="Hand" Name="labBlogs" MouseUp="labBlogs_MouseUp">http://www.cnblogs.com/twzy</TextBlock>
+                                        </WrapPanel>
+
+                                        <WrapPanel Orientation="Horizontal"  Margin="0,4,0,0">
+                                            <TextBlock>NetAnalyzer官网：</TextBlock>
+                                            <TextBlock Foreground="Blue" Cursor="Hand" Name="labNetAnalyzer" MouseUp="labNetAnalyzer_MouseUp">http://twzy.sinaapp.com/</TextBlock>
+                                        </WrapPanel>
+                                    </StackPanel>
+                                </TabItem>
+                                <TabItem Header="组件信息">
+                                    <WrapPanel Orientation="Vertical" Margin="20,50,0,0">
+                                        <Label Content="组件信息" Foreground="#FF6873E6" FontSize="20"/>
+                                        <Label>Fluent Ribbon  https://github.com/fluentribbon/Fluent.Ribbon</Label>
+                                        <Label>CommonMark  http://commonmark.org/</Label>
+                                        <Label>ICSharpCode.AvalonEdit  https://github.com/icsharpcode/AvalonEdit</Label>
+                                        <Label>Pechkin  https://github.com/gmanny/Pechkin</Label>
+                                        <Label>CookComputing.XmlRpcV2  http://xml-rpc.net/</Label>
+                                    </WrapPanel>
+                                </TabItem>
+                            </TabControl>
+                        </Fluent:BackstageTabItem>
+
+                    </Fluent:BackstageTabControl>
+                </Fluent:Backstage>
+            </Fluent:Ribbon.Menu>
+            <!--Tabs-->
+            <Fluent:RibbonTabItem Header="开始" KeyTip="S">
+                <!--常规-->
+                <Fluent:RibbonGroupBox Header="常规">
+                    <Fluent:Button Name="btnOpenDoc" Header="打开" KeyTip="O"    SizeDefinition="Large"  LargeIcon="Images\open32.png" Click="btnOpenDoc_Click" >
+                    </Fluent:Button>
+                    <Fluent:SplitButton Name="btnSaveDoc" Header="保存"  KeyTip="S"  SizeDefinition="Large" LargeIcon="Images\save32.png" Click="btnSaveDoc_Click">
+                        <Fluent:MenuItem Name="btnSaveAsDoc" Header="另存为…" KeyTip="SN" Icon="Images\save.png" Click="btnSaveAsDoc_Click"/>
+                    </Fluent:SplitButton>
+                    <Separator />
+                    <Fluent:Button Name="btnPause" Header="粘贴" KeyTip="V"     SizeDefinition="Large"   LargeIcon="Images\paste321.png" Click="btnPause_Click"  />
+                    <Fluent:Button Name="btnSelectAll" Header="全选" KeyTip="A" SizeDefinition="Middle"  Icon="Images\select16.png" Click="btnSelectAll_Click"    />
+                    <Fluent:Button Name="btnCopy" Header="复制"     KeyTip="CC"  SizeDefinition="Middle"  Icon="Images\Copy.png" Click="btnCopy_Click" />
+                    <Fluent:Button Name="btnCut" Header="剪切"     KeyTip="CU"   SizeDefinition="Middle"  Icon="Images\Cut.png" Click="btnCut_Click" />
+                </Fluent:RibbonGroupBox>
+                <!--编辑器-->
+                <Fluent:RibbonGroupBox Header="编辑器">
+                    <Fluent:RibbonToolBar>
+                        <!--布局-->
+                        <Fluent:RibbonToolBar.LayoutDefinitions>
+                            <Fluent:RibbonToolBarLayoutDefinition Size="Large">
+                                <Fluent:RibbonToolBarRow>
+                                    <Fluent:RibbonToolBarControlDefinition Target="comboBoxFontName"
+                                                                           Width="75" />
+                                    <Fluent:RibbonToolBarControlDefinition Target="comboBoxFontSize"
+                                                                           Width="45" />
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonGrowFont" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonShrinkFont" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+
+
+                                </Fluent:RibbonToolBarRow>
+                                <Fluent:RibbonToolBarRow>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonVEndLine" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonVTab" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonVSpaces" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonNumberBar" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonCurrLine" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonBackgroundColor" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+
+
+                                </Fluent:RibbonToolBarRow>
+                            </Fluent:RibbonToolBarLayoutDefinition>
+
+                        </Fluent:RibbonToolBar.LayoutDefinitions>
+                        <!--定义-->
+                        <Fluent:ComboBox x:Name="comboBoxFontName"
+                                         IsEditable="False"
+                                         MinWidth="40"
+                                         Height="22"
+                                         BorderBrush="Gainsboro"
+                                         Foreground="#FF222222"
+                                         IsTextSearchEnabled="True"
+                                         ResizeMode="Vertical"
+                                         SizeDefinition="Small"
+                                         ScrollViewer.CanContentScroll="False" SelectionChanged="comboBoxFontName_SelectionChanged" KeyTip="EF">
+                            <!--<TextBlock Text="Consolas" FontFamily="Consolas"/>
+                            <TextBlock Text="Arial" FontFamily="Arial"/>
+                            <TextBlock Text="Tahoma" FontFamily="Tahoma"/>
+                            <TextBlock Text="Segoe UI" FontFamily="Segoe UI" />
+                            <TextBlock Text="Winding" FontFamily="Winding"/>-->
+                        </Fluent:ComboBox>
+
+                        <Fluent:ComboBox x:Name="comboBoxFontSize"
+                                         Width="49"
+                                         HorizontalAlignment="Left"
+                                         Height="22"
+                                         BorderBrush="Gainsboro"
+                                         Foreground="#FF222222"
+                                         DisplayMemberPath="Text"
+                                         IsEditable="False"
+                                         SizeDefinition="Small"
+                                         ResizeMode="Vertical"
+                                         SelectionChanged="comboBoxFontSize_SelectionChanged" KeyTip="ES">
+                        </Fluent:ComboBox>
+
+                        <Fluent:Button x:Name="buttonGrowFont"
+                                       Icon="Images\fontsizeincrease16.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonGrowFont_Click"  KeyTip="E1"/>
+                        <Fluent:Button x:Name="buttonShrinkFont"
+                                       Icon="Images\fontsizedecrease16.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonShrinkFont_Click" KeyTip="E2" />
+
+
+                        <Fluent:ToggleButton x:Name="buttonVEndLine"
+                                       Icon="Images\invisiblechars16.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small"
+                                       ToolTip="显示结束符号"   Click="buttonVEndLine_Click" KeyTip="EE"/>
+
+                        <Fluent:ToggleButton x:Name="buttonVTab"
+                                       Icon="Images\key_tabs.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small"
+                                       ToolTip="显示Tab键符号" Click="buttonVTab_Click" KeyTip="ET"/>
+
+                        <Fluent:ToggleButton x:Name="buttonVSpaces"
+                                       Icon="Images\key_spaces.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small"
+                                       ToolTip="显示空格符号"  Click="buttonVSpaces_Click" KeyTip="ES"/>
+
+                        <Fluent:ToggleButton x:Name="buttonNumberBar"
+                                       Icon="Images\LineNumbers.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small"
+                                       IsChecked="True"
+                                       ToolTip="显示行号" Click="buttonNumberBar_Click" KeyTip="EL" />
+
+                        <Fluent:ToggleButton x:Name="buttonCurrLine"
+                                       Icon="Images\currLine.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small"
+                                       ToolTip="显示编辑行" Click="buttonCurrLine_Click" KeyTip="EC"/>
+
+                        <Fluent:DropDownButton x:Name="buttonBackgroundColor"
+                                               HorizontalAlignment="Left"
+                                               SizeDefinition="Small" KeyTip="EB" >
+                            <Fluent:DropDownButton.Icon>
+                                <Grid>
+                                    <Image Source="Images/TextHighlightColor.png"
+                                           Width="16"
+                                           Height="16" />
+                                    <Rectangle VerticalAlignment="Bottom"
+                                               Height="4"
+                                               Width="16"
+                                               HorizontalAlignment="Center" Name="BtneditBackColor">
+                                        <Rectangle.Fill>
+                                            <SolidColorBrush Color="{Binding  ElementName=colorGallery,Path=SelectedColor}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Grid>
+                            </Fluent:DropDownButton.Icon>
+                            <Fluent:ColorGallery  Name="colorGallery"
+                                                 SelectedColor="{Binding ColorViewModel.ThemeColor, Mode=TwoWay}"
+                                                 IsAutomaticColorButtonVisible="False" SelectedColorChanged="colorGallery_SelectedColorChanged" />
+                        </Fluent:DropDownButton>
+
+                    </Fluent:RibbonToolBar>
+                </Fluent:RibbonGroupBox>
+                <!--插入-->
+                <Fluent:RibbonGroupBox Header="插入" Name="GroupMarkdown" >
+
+                    <Fluent:InRibbonGallery
+                        Name="gropHeadList"
+                        MinItemsInRow="2" 
+                        MaxItemsInRow="3"                                                                         
+                        ResizeMode="Both">
+                        <Fluent:Button Name="btnTitle1" Header="标题1"  ToolTip="设置标题1 Ctr+1 "  KeyTip="H1"  SizeDefinition="Large" LargeIcon="Images\title1.png" Click="btnTitle1_Click" ></Fluent:Button>
+                        <Fluent:Button Name="btnTitle2" Header="标题2"  ToolTip="设置标题2 Ctr+2 "  KeyTip="H2"   SizeDefinition="Large" LargeIcon="Images\title2.png" Click="btnTitle2_Click"></Fluent:Button>
+                        <Fluent:Button Name="btnTitle3" Header="标题3"  ToolTip="设置标题3 Ctr+3 "  KeyTip="H3"   SizeDefinition="Large" LargeIcon="Images\title3.png" Click="btnTitle3_Click"></Fluent:Button>
+                        <Fluent:Button Name="btnTitle4" Header="标题4"  ToolTip="设置标题4 Ctr+4 "  KeyTip="H4"   SizeDefinition="Large" LargeIcon="Images\title4.png" Click="btnTitle4_Click"></Fluent:Button>
+                        <Fluent:Button Name="btnTitle5" Header="标题5"  ToolTip="设置标题5 Ctr+5 "  KeyTip="H5"   SizeDefinition="Large" LargeIcon="Images\title5.png" Click="btnTitle5_Click"></Fluent:Button>
+                        <Fluent:Button Name="btnTitle6" Header="标题6"  ToolTip="设置标题6 Ctr+6 "  KeyTip="H6"   SizeDefinition="Large" LargeIcon="Images\title6.png" Click="btnTitle6_Click"></Fluent:Button>
+                    </Fluent:InRibbonGallery>
+
+                    <Fluent:RibbonToolBar>
+                        <Fluent:RibbonToolBar.LayoutDefinitions>
+                            <Fluent:RibbonToolBarLayoutDefinition Size="Large">
+                                <Fluent:RibbonToolBarRow>
+                                    <Fluent:RibbonToolBarControlDefinition Width="0"  Target="markspan" />
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkBlod" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkItalic" />
+                                        <!--<Fluent:RibbonToolBarControlDefinition Target="buttonMarkUnderLine" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkDel" />-->
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkHref" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkImage" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkTable" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkCode" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkUse" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                </Fluent:RibbonToolBarRow>
+                                <Fluent:RibbonToolBarRow>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkUL" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkOL" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkLine" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="buttonMarkTime" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="btnMarkSignature" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                </Fluent:RibbonToolBarRow>
+                            </Fluent:RibbonToolBarLayoutDefinition>
+                        </Fluent:RibbonToolBar.LayoutDefinitions>
+
+                        <TextBlock Name="markspan" Text=""></TextBlock>
+
+                        <Fluent:Button x:Name="buttonMarkBlod"
+                                       Icon="Images\Bold.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkBlod_Click" ToolTip="粗体 Ctr+B " KeyTip="MB" />
+                        <Fluent:Button x:Name="buttonMarkItalic"
+                                       Icon="Images\Italic.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkItalic_Click" ToolTip="斜体 Ctr+I " KeyTip="MI"   />
+                        <!--<Fluent:Button x:Name="buttonMarkUnderLine"
+                                       Icon="Images\Underline.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkUnderLine_Click" Visibility="Hidden" />
+                        <Fluent:Button x:Name="buttonMarkDel"
+                                       Icon="Images\Strikethrough.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkDel_Click" Visibility="Hidden" />-->
+                        <Fluent:Button x:Name="buttonMarkHref"
+                                       Icon="Images\link_16x16.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkHref_Click"  ToolTip="超链接 Ctr+H "  KeyTip="MH" >
+
+                        </Fluent:Button>
+                        <Fluent:SplitButton x:Name="buttonMarkImage"
+                                       Icon="Images\Image.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkImage_Click" ToolTip="图片 Ctr+J " KeyTip="MJ" >
+                            <Fluent:Button Header="来自文件" Name="btnImageFromFile" Icon="Images\Image.png" SizeDefinition="Middle" Click="btnImageFromFile_Click"  ToolTip="通过文件获取图片 Ctr+Alt+J " />
+                        </Fluent:SplitButton>
+                        <Fluent:SplitButton x:Name="buttonMarkTable"
+                                       Icon="Images\tableCellPadding.gif"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkTable_Click"  ToolTip="表格 Ctr+T " KeyTip="MT">
+                            <Fluent:Button Name="btnMarkConvertToTable" SizeDefinition="Middle" Header="转换为表格…" Click="btnMarkConvertToTable_Click"  ToolTip="转换为表格 Ctr+Alt+T " ></Fluent:Button>
+                        </Fluent:SplitButton>
+                        <Fluent:SplitButton x:Name="buttonMarkCode"
+                                       Icon="Images\T_SelectParent_Sm_N.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkCode_Click"  ToolTip="行内代码 Ctr+K " KeyTip="MK">
+                            <Fluent:Button x:Name="buttonMarkCodeSinpper" Icon="Images\T_SelectParent_Sm_N.png" SizeDefinition="Middle" Header="代码片段" Click="buttonMarkCodeSinpper_Click"   ToolTip="代码片段 Ctr+Alt+K "/>
+                        </Fluent:SplitButton>
+
+                        <Fluent:Button x:Name="buttonMarkUse"
+                                       Icon="Images\T_Comment_Sm_N.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkUse_Click"  ToolTip="引用 Ctr+Q "  KeyTip="MQ"/>
+                        <Fluent:Button x:Name="buttonMarkUL"
+                                       Icon="Images\unorderedlist16.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkUL_Click"  ToolTip="无序列表 Ctr+U "  KeyTip="MU"/>
+                        <Fluent:Button x:Name="buttonMarkOL"
+                                       Icon="Images\orderedlist16.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkOL_Click"  ToolTip="有序列表 Ctr+Alt+U " KeyTip="MO"/>
+                        <Fluent:Button x:Name="buttonMarkLine"
+                                       Icon="Images\color_line.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small"  Click="buttonMarkLine_Click"  ToolTip="水平线 Ctr+L " KeyTip="ML"/>
+
+                        <Fluent:Button x:Name="buttonMarkTime"
+                                       Icon="Images\clock_16.png"
+                                       HorizontalAlignment="Left"
+                                       SizeDefinition="Small" Click="buttonMarkTime_Click"  ToolTip="插入时间 Ctr+Y " KeyTip="MY"/>
+                        <Fluent:SplitButton x:Name="btnMarkSignature"
+                                       Header="签名"    
+                                       Icon="Images\text_signature.png"
+                                       SizeDefinition="Middle" Click="btnMarkSignature_Click"  ToolTip="插入签名 Ctr+Alt+Y " >
+                            <Fluent:Button Header="编辑签名" SizeDefinition="Middle" Icon="Images\text_signature.png" Name="btnEditMarkSignature" Click="btnEditMarkSignature_Click"  ToolTip="表格 Ctr+T "  KeyTip="MS"></Fluent:Button>
+                        </Fluent:SplitButton>
+                    </Fluent:RibbonToolBar>
+
+
+                </Fluent:RibbonGroupBox>
+                <!--操作-->
+                <Fluent:RibbonGroupBox Header="操作">
+
+                    <Fluent:RibbonToolBar>
+                        <Fluent:RibbonToolBar.LayoutDefinitions>
+                            <Fluent:RibbonToolBarLayoutDefinition Size="Large">
+                                <Fluent:RibbonToolBarRow>
+                                    <Fluent:RibbonToolBarControlDefinition Width="0" Target="tmpMarkSpace" />
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="btnFind" Size="Middle" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="btnUndo" />
+                                        <Fluent:RibbonToolBarControlDefinition Target="btnRedo" />
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+                                </Fluent:RibbonToolBarRow>
+                                <Fluent:RibbonToolBarRow>
+                                    <Fluent:RibbonToolBarControlGroupDefinition>
+                                        <Fluent:RibbonToolBarControlDefinition Target="btnReplace" Size="Middle"/>
+                                    </Fluent:RibbonToolBarControlGroupDefinition>
+
+                                    <Fluent:RibbonToolBarControlDefinition Target="btnHead" />
+                                    <Fluent:RibbonToolBarControlDefinition Target="btnEnd" />
+
+                                </Fluent:RibbonToolBarRow>
+                            </Fluent:RibbonToolBarLayoutDefinition>
+                        </Fluent:RibbonToolBar.LayoutDefinitions>
+                        <TextBlock Name="tmpMarkSpace"></TextBlock>
+                        <Fluent:Button Name="btnFind" Header="查找"  SizeDefinition="Middle" Icon="Images\find_16.png" Click="btnFind_Click" />
+                        <Fluent:Button Name="btnReplace" Header="替换"  SizeDefinition="Middle" Icon="Images\replace16.png" Click="btnReplace_Click"/>
+                        <Fluent:Button Name="btnUndo" Header="撤销"  SizeDefinition="Small" Icon="Images\undo16.png" Click="btnUndo_Click" />
+                        <Fluent:Button Name="btnRedo" Header="恢复"  SizeDefinition="Small" Icon="Images\redo16.png" Click="btnRedo_Click"/>
+                        <Fluent:Button Name="btnHead" Header="开始"  SizeDefinition="Small" Icon="Images\textTop.png" Click="btnHead_Click" />
+                        <Fluent:Button Name="btnEnd" Header="结尾"  SizeDefinition="Small" Icon="Images\textBottom.png" Click="btnEnd_Click"/>
+                    </Fluent:RibbonToolBar>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="模式">
+                    <Fluent:ToggleButton GroupName="displayMode" Name="btnEdit" Header="编辑" SizeDefinition="Large" LargeIcon="Images\pencil_32.png" Click="btnEdit_Click" />
+                    <Fluent:ToggleButton GroupName="displayMode"  Name="btnDisplay" Header="查看"  SizeDefinition="Large" LargeIcon="Images\book_open.png" Click="btnDisplay_Click"/>
+                    <Fluent:ToggleButton GroupName="displayMode"  Name="btnScanling" Header="预览"   SizeDefinition="Large" LargeIcon="Images\both.png" Click="btnScanling_Click"/>
+
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+
+            <Fluent:RibbonTabItem Header="浏览"  Name="ribbonItemScank">
+                <!--<Fluent:RibbonGroupBox Header="设计">
+                    <Fluent:Button Header="添加" Name="btnAddStyle" SizeDefinition="Large" LargeIcon="Images\style_add.png" Click="btnAddStyle_Click"></Fluent:Button>
+                    <Fluent:Button Header="编辑" Name="btnEditStyle" SizeDefinition="Large" LargeIcon="Images\style_edit.png" Click="btnEditStyle_Click" ></Fluent:Button>
+                </Fluent:RibbonGroupBox>-->
+                <Fluent:RibbonGroupBox Header="样式">
+
+                    <Fluent:InRibbonGallery
+                        Name="gropStyleList" 
+                        MaxItemsInRow="6" 
+                        MinItemsInRow="1"
+                        ResizeMode="Both">
+                    </Fluent:InRibbonGallery>
+
+                </Fluent:RibbonGroupBox>
+                <!--<Fluent:RibbonGroupBox Header="显示">
+                    <Fluent:Button Header="浏览" LargeIcon="Images\presentation.png"></Fluent:Button>
+                    <Fluent:Button Header="浏览器" LargeIcon="Images\entire_network.png"></Fluent:Button>
+                </Fluent:RibbonGroupBox>-->
+
+                <Fluent:RibbonGroupBox Header="导出" Name="groupExport">
+                    <!--<Fluent:Button Header="脱机导出" SizeDefinition="Large" LargeIcon="Images\oficina_MD.png"></Fluent:Button>
+                    <Separator/>-->
+                    <Fluent:Button Header="导出HTML" Name="btnOutputHtml" SizeDefinition="Large" LargeIcon="Images\filetype_html.png" Click="btnOutputHtml_Click"></Fluent:Button>
+                    <Fluent:Button Header="导出PDF" Name="btnOutputPdf" SizeDefinition="Large" LargeIcon="Images\filetype_pdf.png" Click="btnOutputPdf_Click"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="打印" Name="groupDocPrint">
+                    <Fluent:Button Header="打印预览" Name="btnPrintPrveDoc" SizeDefinition="Middle" Icon="Images\printpreview32.png" Click="btnPrintPrveDoc_Click"/>
+
+                    <Fluent:Button Header="打印文档" Name="btnPrintDoc" SizeDefinition="Middle" Icon="Images\printquick16.png" Click="btnPrintDoc_Click"/>
+
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="发布">
+                    <Fluent:SplitButton Header="发布" Name="btnPublish" SizeDefinition="Large" LargeIcon="Images\upload.png" Click="btnPublish_Click" >
+                        <Fluent:MenuItem Name="btnPublishDraf" Header="发布为草稿" Icon="Images\draft_versions.png"  Click="btnPublishDraf_Click"/>
+                    </Fluent:SplitButton>
+                    <Separator/>
+                    <Fluent:Button Name="btnBlogsUser" Header="账户管理" SizeDefinition="Middle" Icon="Images\user_male_16.png" Click="btnBlogsUser_Click"></Fluent:Button>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+
+            <Fluent:RibbonTabItem Header="视图">
+                <Fluent:RibbonGroupBox Header="窗口">
+                    <Fluent:Button Name="btnFullSrceen" Header="全屏模式" SizeDefinition="Large" LargeIcon="Images\full.png" Click="btnFullSrceen_Click" ></Fluent:Button>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="主题">
+                    <Fluent:ToggleButton Name="btnTheme2013" GroupName="GroupTheme" Header="Office 2013" SizeDefinition="Middle" Icon="Images\SilverTheme.png" IsChecked="True" Click="btnTheme2013_Click"/>
+                    <Fluent:ToggleButton Name="btnTheme2010" GroupName="GroupTheme" Header="Office 2010" SizeDefinition="Middle" Icon="Images\BlueTheme.png" Click="btnTheme2010_Click"/>
+
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
+
+
+        <!--核心部分-->
+
+        <Grid Grid.Row="1" Background="White">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="grdCode" Width="*" MinWidth="200"/>
+                <ColumnDefinition Name="grdView" Width="*" MinWidth="200"/>
+            </Grid.ColumnDefinitions>
+
+            <local:MarkEditer x:Name="markEdit" Grid.Column="0" Margin="0,0,4,0"   />
+
+            <GridSplitter Name="grdSplitter" Width="2" Background="LightGray"></GridSplitter>
+            <local:WebDoc x:Name="markDoc" Grid.Column="1"  />
+        </Grid>
+
+
+
+        <Fluent:StatusBar Grid.Row="2" >
+            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Left">
+                <TextBlock Text="就绪" Margin="4,0,0,0" Name="LabStatus"/>
+            </Fluent:StatusBarItem>
+
+            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Right">
+                <Button Name="btnEditSwitch"
+                        Content="浏览"
+                        Background="{Binding ElementName=LabStatus,Path=Background}" 
+                        Foreground="{Binding ElementName=LabStatus,Path=Foreground}"  
+                        Template="{DynamicResource StatusButtonTemplate}"
+                       
+                        Margin="10,0,0,0"></Button>
+            </Fluent:StatusBarItem>
+        </Fluent:StatusBar>
+    </Grid>
+</Fluent:RibbonWindow>

@@ -1,0 +1,74 @@
+﻿<Fluent:RibbonWindow  x:Class="MarkWord.WinBlogsLogin"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarkWord"
+        mc:Ignorable="d"
+        Title="MarkWord" Height="570" Width="540" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" Loaded="RibbonWindow_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Fluent:Ribbon Grid.Row="0"
+                       IsMinimized="True"
+                       IsAutomaticCollapseEnabled="False"
+                       IsCollapsed="True"
+                       IsQuickAccessToolBarVisible="False"
+                       CanCustomizeQuickAccessToolBar="False"
+                       CanCustomizeRibbon="False"
+                       CanQuickAccessLocationChanging="False"
+                       ContentGapHeight="2" />
+        <Grid Grid.Row="1"  Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+            <Canvas Grid.Row="0" >
+                <Label x:Name="label_Copy3" Content="博客信息配置：" Canvas.Left="35.357" Canvas.Top="19.998" Foreground="#FF6873E6" FontSize="20"/>
+
+                <Label x:Name="label" Content="MetaWeblogAPI 接口地址：" Canvas.Left="65" Canvas.Top="70"/>
+                <Label x:Name="label_Copy" Content="用户名：" Canvas.Left="65" Canvas.Top="130"/>
+                <Label x:Name="label_Copy1" Content="密码：" Canvas.Left="65" Canvas.Top="190"/>
+                <Label x:Name="label_Copy2" Content="模板：" Canvas.Left="65" Canvas.Top="270"/>
+
+
+
+                <TextBox x:Name="txtAPIUrl" Height="22" Canvas.Left="70" TextWrapping="NoWrap" Text="http://" Canvas.Top="95" Width="400"/>
+                <TextBox x:Name="txtUser" Height="22" Canvas.Left="70" TextWrapping="NoWrap" Text="" Canvas.Top="155" Width="400"/>
+                <PasswordBox x:Name="txtPwd" Height="22" Canvas.Left="70"  Canvas.Top="215" Width="400"/>
+                <CheckBox Name="cbxRecodePwd" Canvas.Left="70" Canvas.Top="240" IsChecked="True">记住密码</CheckBox>
+                <TextBox x:Name="txtModel" Height="80" Canvas.Left="70" TextWrapping="Wrap" AcceptsReturn="True" Text="" Canvas.Top="295" Width="400">
+                    <TextBox.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem Header="复制"  Command="ApplicationCommands.Copy"/>
+                            <MenuItem Header="剪切"  Command="ApplicationCommands.Cut"/>
+                            <Separator/>
+                            <MenuItem Header="粘贴" Command="ApplicationCommands.Paste"/>
+                        </ContextMenu>
+                    </TextBox.ContextMenu>
+                </TextBox>
+
+
+                <Label x:Name="label_Copy4" Content="信息：" Canvas.Left="65" Canvas.Top="390"/>
+                <Label x:Name="labBlogTitle" Content="" Canvas.Left="110" Canvas.Top="390"/>
+                <Label x:Name="labBlogUrl" Content="" Canvas.Left="110" Canvas.Top="410"  />
+                <!--<Button x:Name="btnLogin" Content="登陆验证" Height="22" Canvas.Left="370" Canvas.Top="390" Width="100" Background="#FFFFFDFD" Click="btnLogin_Click"/>-->
+                <Fluent:Button x:Name="btnLogin" Header="登陆验证" 
+                               Icon="Images\symbol_check.png"
+                               SizeDefinition="Middle" Height="22" Canvas.Left="393" 
+                               Canvas.Top="392" BorderBrush="LightGray"  BorderThickness="1" 
+                               Click="btnLogin_Click"></Fluent:Button>
+
+
+            </Canvas>
+            <Canvas Grid.Row="1" Background="#FFF7F7F7" >
+                <Button x:Name="btnOK" Content="确定" Height="22" Canvas.Left="350" Canvas.Top="15" Width="70" Background="#FFFFFDFD" Click="btnOK_Click"/>
+
+                <Button x:Name="btnCancel" Content="取消" Height="22" Canvas.Left="450" Canvas.Top="15" Width="70"  Background="#FFFFFDFD" Click="btnCancel_Click"/>
+            </Canvas>
+        </Grid>
+    </Grid>
+</Fluent:RibbonWindow>

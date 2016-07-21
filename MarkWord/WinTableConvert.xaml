@@ -1,0 +1,40 @@
+﻿<Fluent:RibbonWindow  x:Class="MarkWord.WinTableConvert"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarkWord"
+        mc:Ignorable="d"
+        Title="插入表格" Height="500" Width="800" WindowStyle="ToolWindow"  ShowInTaskbar="False"
+                      WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Fluent:Ribbon Grid.Row="0" IsMinimized="True"
+                       IsAutomaticCollapseEnabled="False"
+                       IsCollapsed="True"
+                       IsQuickAccessToolBarVisible="False"
+                       CanCustomizeQuickAccessToolBar="False"
+                       CanCustomizeRibbon="False"
+                       CanQuickAccessLocationChanging="False"
+                       ContentGapHeight="2" Background="White" />
+        <Border BorderThickness="1" BorderBrush="LightGray" Grid.Row="1" Margin="10" Background="White">
+            <WindowsFormsHost Name="winHost"  />
+        </Border>
+        <Button x:Name="btnOk" Grid.Row="2" Content="插入" HorizontalAlignment="Left"  Margin="600,0,0,0"  VerticalAlignment="Top" Width="75" Click="btnOk_Click" Background="White"/>
+        <Button x:Name="btnCancel" Grid.Row="2" Content="取消" HorizontalAlignment="Left"  Margin="700,0,0,0"  VerticalAlignment="Top" Width="75" Click="btnCancel_Click" Background="White" />
+        <ComboBox x:Name="cbxSpan" Grid.Row="2" HorizontalAlignment="Left" Margin="120,0,0,0" SelectedIndex="0"  VerticalAlignment="Top" Width="84" Height="20" Background="White" BorderBrush="#FFFFFDFD">
+            <ComboBox.Items>
+                <ComboBoxItem>[Tabs键]</ComboBoxItem>
+                <ComboBoxItem>,</ComboBoxItem>
+                <ComboBoxItem>[空格键]</ComboBoxItem>
+            </ComboBox.Items>
+        </ComboBox>
+        <TextBlock Grid.Row="2" Margin="31,2,676,8" Height="20" >单元格分隔符：</TextBlock>
+
+    </Grid>
+</Fluent:RibbonWindow>

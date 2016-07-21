@@ -1,0 +1,16 @@
+//²©¿ÍÔ°
+
+http://rpc.cnblogs.com/metaweblog/twzy/
+
+
+<div class="cnblogs-markdown">
+{0}
+</div>
+
+
+//csdn
+http://write.blog.csdn.net/xmlrpc/index
+
+<div class="markdown_views">
+{0}
+</div>

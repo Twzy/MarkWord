@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{EF4D991E-EF66-4D63-AD77-4AC88372FB60}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MarkWord</RootNamespace>
+    <AssemblyName>MarkWord</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>icon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BlogsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Test\MateBlogTest\BlogsAPI\bin\Release\BlogsAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonMark, Version=0.1.0.0, Culture=neutral, PublicKeyToken=001ef8810438905d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\CommonMark.NET-master\CommonMark\bin\v4.0\Release\CommonMark.dll</HintPath>
+    </Reference>
+    <Reference Include="CookComputing.XmlRpcV2, Version=2.5.0.0, Culture=neutral, PublicKeyToken=a7d6e17aa302004d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Test\MateBlogTest\BlogsAPI\bin\Release\CookComputing.XmlRpcV2.dll</HintPath>
+    </Reference>
+    <Reference Include="Fluent, Version=5.0.0.0, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Fluent.Ribbon\Fluent.Ribbon-master\build\bin\NET 4.0\Release\Fluent.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>..\..\..\..\源程序\HtmlAgilityPack.1.4.6\Net40\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit">
+      <HintPath>..\..\..\..\AvalonEdit-master\ICSharpCode.AvalonEdit\bin\Release\ICSharpCode.AvalonEdit.dll</HintPath>
+    </Reference>
+    <Reference Include="Pechkin, Version=0.5.8.1, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\Pechkin.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="BLL\BlogsHelper.cs" />
+    <Compile Include="BLL\FileManager.cs" />
+    <Compile Include="BLL\HtmlHelper.cs" />
+    <Compile Include="Utils\ThemeStyle.cs" />
+    <Compile Include="WinBlogsLogin.xaml.cs">
+      <DependentUpon>WinBlogsLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinFindReplaceDialog.xaml.cs">
+      <DependentUpon>WinFindReplaceDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MarkEditer.xaml.cs">
+      <DependentUpon>MarkEditer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\PublishInfoHandler.cs" />
+    <Compile Include="WinTableConvert.xaml.cs">
+      <DependentUpon>WinTableConvert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\Annotations.cs" />
+    <Compile Include="Utils\BlogsInfo.cs" />
+    <Compile Include="Utils\BlogsDocumentInfo.cs" />
+    <Compile Include="Utils\DisplayHandler.cs" />
+    <Compile Include="Utils\Tools.cs" />
+    <Compile Include="Utils\Common.cs" />
+    <Compile Include="Utils\Config.cs" />
+    <Compile Include="Utils\WorkType.cs" />
+    <Compile Include="ViewModels\ColorViewModel.cs" />
+    <Compile Include="ViewModels\FontsViewModel.cs" />
+    <Compile Include="ViewModels\ViewModel.cs" />
+    <Compile Include="WebDoc.xaml.cs">
+      <DependentUpon>WebDoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinSignature.xaml.cs">
+      <DependentUpon>WinSignature.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinStyleSelected.xaml.cs">
+      <DependentUpon>WinStyleSelected.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WinUploadProcess.xaml.cs">
+      <DependentUpon>WinUploadProcess.xaml</DependentUpon>
+    </Compile>
+    <Page Include="WinBlogsLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinFindReplaceDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MarkEditer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinTableConvert.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Template\TemplateStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WebDoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinSignature.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinStyleSelected.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinUploadProcess.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\test.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Bold.png" />
+    <Resource Include="Images\Copy.png" />
+    <Resource Include="Images\Cut.png" />
+    <Resource Include="Images\FormatPainter.png" />
+    <Resource Include="Images\GalleryLarge.png" />
+    <Resource Include="Images\Italic.png" />
+    <Resource Include="Images\PasteFormating.png" />
+    <Resource Include="Images\PasteImage.png" />
+    <Resource Include="Images\PasteLarge.png" />
+    <Resource Include="Images\PasteSourceFormating.png" />
+    <Resource Include="Images\PasteText.png" />
+    <Resource Include="Images\PasteTextOnly.png" />
+    <Resource Include="Images\Save.png" />
+    <Resource Include="Images\ShrinkFont.png" />
+    <Resource Include="Images\SilverTheme.png" />
+    <Resource Include="Images\Strikethrough.png" />
+    <Resource Include="Images\Subscript.png" />
+    <Resource Include="Images\Superscript.png" />
+    <Resource Include="Images\Underline.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\addons32.png" />
+    <Resource Include="Images\bold16.png" />
+    <Resource Include="Images\borderbottom16.png" />
+    <Resource Include="Images\casing16.png" />
+    <Resource Include="Images\close32.png" />
+    <Resource Include="Images\copy16.png" />
+    <Resource Include="Images\copyformat16.png" />
+    <Resource Include="Images\cut16.png" />
+    <Resource Include="Images\eraseformat16.png" />
+    <Resource Include="Images\exit16.png" />
+    <Resource Include="Images\fill16.png" />
+    <Resource Include="Images\find32.png" />
+    <Resource Include="Images\fontcolor16.png" />
+    <Resource Include="Images\fontsizedecrease16.png" />
+    <Resource Include="Images\fontsizeincrease16.png" />
+    <Resource Include="Images\goto16.png" />
+    <Resource Include="Images\hilight16.png" />
+    <Resource Include="Images\indentdecrease16.png" />
+    <Resource Include="Images\indentdecrease161.png" />
+    <Resource Include="Images\indentincrease16.png" />
+    <Resource Include="Images\invisiblechars16.png" />
+    <Resource Include="Images\italic16.png" />
+    <Resource Include="Images\multilevellist16.png" />
+    <Resource Include="Images\newdocument32.png" />
+    <Resource Include="Images\open16.png" />
+    <Resource Include="Images\open32.png" />
+    <Resource Include="Images\options16.png" />
+    <Resource Include="Images\orderedlist16.png" />
+    <Resource Include="Images\pageblank16.png" />
+    <Resource Include="Images\paragraphspacing16.png" />
+    <Resource Include="Images\paste16.png" />
+    <Resource Include="Images\paste32.png" />
+    <Resource Include="Images\paste321.png" />
+    <Resource Include="Images\pastelink16.png" />
+    <Resource Include="Images\pastespecial16.png" />
+    <Resource Include="Images\prepare32.png" />
+    <Resource Include="Images\print32.png" />
+    <Resource Include="Images\print321.png" />
+    <Resource Include="Images\printpreview32.png" />
+    <Resource Include="Images\printquick16.png" />
+    <Resource Include="Images\printquick32.png" />
+    <Resource Include="Images\publish32.png" />
+    <Resource Include="Images\replace16.png" />
+    <Resource Include="Images\save16.png" />
+    <Resource Include="Images\save32.png" />
+    <Resource Include="Images\saveas32.png" />
+    <Resource Include="Images\saveas321.png" />
+    <Resource Include="Images\select16.png" />
+    <Resource Include="Images\send32.png" />
+    <Resource Include="Images\sort16.png" />
+    <Resource Include="Images\strikethru16.png" />
+    <Resource Include="Images\style16.png" />
+    <Resource Include="Images\stylechange32.png" />
+    <Resource Include="Images\styleset16.png" />
+    <Resource Include="Images\subindex16.png" />
+    <Resource Include="Images\superindex16.png" />
+    <Resource Include="Images\textaligncenter16.png" />
+    <Resource Include="Images\textalignjustify16.png" />
+    <Resource Include="Images\textalignleft16.png" />
+    <Resource Include="Images\textalignright16.png" />
+    <Resource Include="Images\themefont.png" />
+    <Resource Include="Images\underline16.png" />
+    <Resource Include="Images\undo16.png" />
+    <Resource Include="Images\unorderedlist16.png" />
+    <Resource Include="Images\word2003doc32.png" />
+    <Resource Include="Images\worddocument32.png" />
+    <Resource Include="Images\wordtemplate32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\LineNumbers.png" />
+    <Resource Include="Images\TextHighlightColor.png" />
+    <Resource Include="Images\key_enter.png" />
+    <Resource Include="Images\key_spaces.png" />
+    <Resource Include="Images\key_tabs.png" />
+    <Resource Include="Images\currLine.png" />
+    <Resource Include="Images\T_WrapTag_Sm_N.png" />
+    <Resource Include="Images\title1.png" />
+    <Resource Include="Images\title2.png" />
+    <Resource Include="Images\title3.png" />
+    <Resource Include="Images\title4.png" />
+    <Resource Include="Images\title5.png" />
+    <Resource Include="Images\title6.png" />
+    <Resource Include="Images\T_Comment_Sm_N.png" />
+    <Resource Include="Images\T_SelectParent_Sm_N.png" />
+    <Resource Include="Images\title.png" />
+    <Resource Include="Images\clock1_16.png" />
+    <Resource Include="Images\clock_16.png" />
+    <Resource Include="Images\Image.png" />
+    <Resource Include="Images\link_16x16.png" />
+    <Resource Include="Images\tableCellPadding.gif" />
+    <Resource Include="Images\color_line.png" />
+    <Resource Include="Images\find_16.png" />
+    <Resource Include="Images\redo16.png" />
+    <Resource Include="Images\text_signature.png" />
+    <Resource Include="Images\textBottom.png" />
+    <Resource Include="Images\textTop.png" />
+    <Resource Include="Images\pencil_32.png" />
+    <Resource Include="Images\book_open.png" />
+    <Resource Include="Images\style_add.png" />
+    <Resource Include="Images\style_edit.png" />
+    <Resource Include="Images\entire_network.png" />
+    <Resource Include="Images\presentation.png" />
+    <Resource Include="Images\oficina_html.png" />
+    <Resource Include="Images\oficina_pdf.png" />
+    <Resource Include="Images\oficina_MD.png" />
+    <Resource Include="Images\both.png" />
+    <Resource Include="Images\full.png" />
+    <Content Include="HTMLPage1.html" />
+    <SplashScreen Include="Images\loadImg.png" />
+    <Resource Include="Images\icon.ico" />
+    <Resource Include="Images\icon.png" />
+    <Resource Include="Images\upload.png" />
+    <Resource Include="Images\draft_versions.png" />
+    <Resource Include="Images\fileloadIcon.png" />
+    <Resource Include="Images\user_male_16.png" />
+    <Resource Include="Images\symbol_check.png" />
+    <Resource Include="Images\ok.png" />
+    <Resource Include="Images\markInfo.png" />
+    <Resource Include="Images\filetype_html.png" />
+    <Resource Include="Images\filetype_pdf.png" />
+    <Resource Include="Images\BlueTheme.png" />
+    <Resource Include="icon.ico" />
+    <Content Include="Resources\DefaultStyle.css" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script>
+        function updatePageContent(msg) {
+            document.body.innerHTML = msg;
+            var links = document.getElementsByTagName('a');
+            var len = links.length;
+            for (var i = 0; i < len; i++)
+            {
+                links[i].target = '_blank';
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>
