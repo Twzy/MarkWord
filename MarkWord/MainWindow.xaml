@@ -529,6 +529,16 @@
                        
                         Margin="10,0,0,0"></Button>
             </Fluent:StatusBarItem>
+            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Right">
+                <Button Name="btnGetSource"
+                        Click="btnGetSource_Click"
+                        Content="下载源码"
+                        Background="{Binding ElementName=LabStatus,Path=Background}" 
+                        Foreground="{Binding ElementName=LabStatus,Path=Foreground}"  
+                        Template="{DynamicResource StatusButtonTemplate}"
+                       
+                        Margin="20,0,0,0"></Button>
+            </Fluent:StatusBarItem>
         </Fluent:StatusBar>
     </Grid>
 </Fluent:RibbonWindow>

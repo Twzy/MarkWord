@@ -1016,8 +1016,12 @@ namespace MarkWord
 
 
 
+
         #endregion
 
-
+        private void btnGetSource_Click(object sender, RoutedEventArgs e)
+        {
+            System.Diagnostics.Process.Start("https://github.com/Twzy/MarkWord");
+        }
     }
 }

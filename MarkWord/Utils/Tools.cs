@@ -111,54 +111,54 @@ namespace MarkWord
         #endregion
 
 
-        //html to Pdf
-        public static void HtmlToPdf(string filePath, string html, bool isOrientation = false)
-        {
-            if (string.IsNullOrEmpty(html))
-                html = "Null";
-            // 创建全局信息
-            GlobalConfig gc = new GlobalConfig();
-            gc.SetMargins(new Margins(50, 50, 60, 60))
-              .SetDocumentTitle("MarkWord")
-              .SetPaperSize(PaperKind.A4)
-              .SetPaperOrientation(isOrientation)
-              .SetOutlineGeneration(true);
+//html to Pdf
+public static void HtmlToPdf(string filePath, string html, bool isOrientation = false)
+{
+    if (string.IsNullOrEmpty(html))
+        html = "Null";
+    // 创建全局信息
+    GlobalConfig gc = new GlobalConfig();
+    gc.SetMargins(new Margins(50, 50, 60, 60))
+        .SetDocumentTitle("MarkWord")
+        .SetPaperSize(PaperKind.A4)
+        .SetPaperOrientation(isOrientation)
+        .SetOutlineGeneration(true);
 
            
-            //页面信息
-            ObjectConfig oc = new ObjectConfig();
-            oc.SetCreateExternalLinks(false)
-              .SetFallbackEncoding(Encoding.UTF8)
-              .SetLoadImages(true)
-              .SetScreenMediaType(true)
-              .SetPrintBackground(true);
-            //.SetZoomFactor(1.5);
+    //页面信息
+    ObjectConfig oc = new ObjectConfig();
+    oc.SetCreateExternalLinks(false)
+        .SetFallbackEncoding(Encoding.UTF8)
+        .SetLoadImages(true)
+        .SetScreenMediaType(true)
+        .SetPrintBackground(true);
+    //.SetZoomFactor(1.5);
 
-            var pechkin = new SimplePechkin(gc);
-            pechkin.Finished += Pechkin_Finished;
-            pechkin.Error += Pechkin_Error;
-            pechkin.ProgressChanged += Pechkin_ProgressChanged;
-            var buf = pechkin.Convert(oc, html);
+    var pechkin = new SimplePechkin(gc);
+    pechkin.Finished += Pechkin_Finished;
+    pechkin.Error += Pechkin_Error;
+    pechkin.ProgressChanged += Pechkin_ProgressChanged;
+    var buf = pechkin.Convert(oc, html);
 
-            if (buf == null)
-            {
-                Common.ShowMessage("导出异常");
-                return;
-            }
+    if (buf == null)
+    {
+        Common.ShowMessage("导出异常");
+        return;
+    }
 
-            try
-            {
-                string fn = filePath; //Path.GetTempFileName() + ".pdf";
-                FileStream fs = new FileStream(fn, FileMode.Create);
-                fs.Write(buf, 0, buf.Length);
-                fs.Close();
+    try
+    {
+        string fn = filePath; //Path.GetTempFileName() + ".pdf";
+        FileStream fs = new FileStream(fn, FileMode.Create);
+        fs.Write(buf, 0, buf.Length);
+        fs.Close();
 
-                //Process myProcess = new Process();
-                //myProcess.StartInfo.FileName = fn;
-                //myProcess.Start();
-            }
-            catch { }
-        }
+        //Process myProcess = new Process();
+        //myProcess.StartInfo.FileName = fn;
+        //myProcess.Start();
+    }
+    catch { }
+}
 
         private static void Pechkin_ProgressChanged(SimplePechkin converter, int progress, string progressDescription)
         {
