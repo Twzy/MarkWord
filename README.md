@@ -1,5 +1,5 @@
 # MarkWord
-a Markdown editer
+a Markdown editer. power by 墨云软件
 #### Characteristic:
 + Use the CommonMark syntax
 + Office2013 Style
