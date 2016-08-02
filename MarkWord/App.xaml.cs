@@ -37,14 +37,8 @@ namespace MarkWord
             Application.Current.Resources.EndInit();
 
 
-
-
-
             base.OnStartup(e);
-            System.Threading.ThreadPool.QueueUserWorkItem(new System.Threading.WaitCallback(p =>
-            {
-                s.Close(new TimeSpan(0, 0, 2));
-            }));
+        
 
         }
         protected override void OnExit(ExitEventArgs e)
