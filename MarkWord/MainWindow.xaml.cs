@@ -262,7 +262,7 @@ namespace MarkWord
             markEdit.textEditor.SelectAll();
         }
 
-        private void btnPause_Click(object sender, RoutedEventArgs e)
+        private void btnPaste_Click(object sender, RoutedEventArgs e)
         {
             markEdit.textEditor.Paste();
         }

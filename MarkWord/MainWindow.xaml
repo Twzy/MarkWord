@@ -133,7 +133,7 @@
                         <Fluent:MenuItem Name="btnSaveAsDoc" Header="另存为…" KeyTip="SN" Icon="Images\save.png" Click="btnSaveAsDoc_Click"/>
                     </Fluent:SplitButton>
                     <Separator />
-                    <Fluent:Button Name="btnPause" Header="粘贴" KeyTip="V"     SizeDefinition="Large"   LargeIcon="Images\paste321.png" Click="btnPause_Click"  />
+                    <Fluent:Button Name="btnPaste" Header="粘贴" KeyTip="V"     SizeDefinition="Large"   LargeIcon="Images\paste321.png" Click="btnPaste_Click"  />
                     <Fluent:Button Name="btnSelectAll" Header="全选" KeyTip="A" SizeDefinition="Middle"  Icon="Images\select16.png" Click="btnSelectAll_Click"    />
                     <Fluent:Button Name="btnCopy" Header="复制"     KeyTip="CC"  SizeDefinition="Middle"  Icon="Images\Copy.png" Click="btnCopy_Click" />
                     <Fluent:Button Name="btnCut" Header="剪切"     KeyTip="CU"   SizeDefinition="Middle"  Icon="Images\Cut.png" Click="btnCut_Click" />
