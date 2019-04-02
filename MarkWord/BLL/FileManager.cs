@@ -45,7 +45,7 @@ namespace MarkWord.BLL
         }
 
 
-        public static string SavePath { get; private set; }
+        public static string SavePath { get; set; }
         public static bool isChangeFlag { get; set; }//是否更变
         public static bool SaveMarkdownFile(string content)
         {
