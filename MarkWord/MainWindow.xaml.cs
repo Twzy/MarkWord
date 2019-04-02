@@ -779,6 +779,7 @@ namespace MarkWord
             markDoc.LoadAllHTML(markEdit.textEditor.Text);
             Config.Common.FileList.Remove(filePath);
             Config.Common.FileList.Insert(0, filePath);
+            BLL.FileManager.SavePath = filePath;
         }
 
         /// <summary>
