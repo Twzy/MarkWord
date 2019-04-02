@@ -21,22 +21,6 @@ namespace MarkWord
             Config.ReadConfig();
             Config.ReadBlogsConfig();
 
-
-            Application.Current.Resources.BeginInit();
-            switch (Config.Common.Theme)
-            {
-                case ThemeStyle.Office2010:
-                    Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("pack://application:,,,/Fluent;component/Themes/Generic.xaml") });
-                    Application.Current.Resources.MergedDictionaries.RemoveAt(0);
-                    break;
-                case ThemeStyle.Office2013:
-                    Application.Current.Resources.MergedDictionaries.Add(new ResourceDictionary { Source = new Uri("pack://application:,,,/Fluent;component/Themes/Office2013/Generic.xaml") });
-                    Application.Current.Resources.MergedDictionaries.RemoveAt(0);
-                    break;
-            }
-            Application.Current.Resources.EndInit();
-
-
             base.OnStartup(e);
         
 

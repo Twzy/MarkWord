@@ -37,10 +37,6 @@
     <ApplicationIcon>icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="BlogsAPI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\BlogsAPI\bin\Release\BlogsAPI.dll</HintPath>
-    </Reference>
     <Reference Include="CommonMark, Version=0.1.0.0, Culture=neutral, PublicKeyToken=001ef8810438905d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\DLL\CommonMark.dll</HintPath>
@@ -51,7 +47,7 @@
     </Reference>
     <Reference Include="Fluent, Version=4.0.3.0, Culture=neutral, PublicKeyToken=3e436e32a8c5546f, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\DLL\Fluent.dll</HintPath>
+      <HintPath>E:\VS\Work\NetAnalyzer\DLL\Fluent.dll</HintPath>
     </Reference>
     <Reference Include="HtmlAgilityPack">
       <HintPath>..\DLL\HtmlAgilityPack.dll</HintPath>
@@ -356,6 +352,15 @@
     <Resource Include="Images\BlueTheme.png" />
     <Resource Include="icon.ico" />
     <Content Include="Resources\DefaultStyle.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BlogsAPI\BlogsAPI.csproj">
+      <Project>{9ab23167-97ae-4fed-9698-597f14124e54}</Project>
+      <Name>BlogsAPI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
