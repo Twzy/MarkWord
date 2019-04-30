@@ -79,7 +79,7 @@
                         <Fluent:BackstageTabItem Header="信息">
                             <TabControl Margin="20,5,20,5" Style="{DynamicResource InnerBackstageTabControlStyle}" SelectedIndex="1">
                                 <Fluent:SeparatorTabItem Header="软件信息"/>
-                                <TabItem Header="关于MarkWord" >
+                                <TabItem Foreground="Black" Header="关于MarkWord" >
 
                                     <StackPanel Orientation="Vertical"   Margin="20,50,0,0" >
 
@@ -93,21 +93,21 @@
                                         <TextBlock  Margin="0,4,0,0">作者：墨云软件</TextBlock>
 
                                         <WrapPanel Orientation="Horizontal" Margin="0,10,0,0">
-                                            <TextBlock>E-Mail：</TextBlock>
+                                            <TextBlock Foreground="Black">E-Mail：</TextBlock>
                                             <TextBlock Text="ftianwen@126.com" Foreground="Blue" Name="labBogsEmail" MouseUp="labBogsEmail_MouseUp"/>
                                         </WrapPanel>
                                         <WrapPanel Orientation="Horizontal"  Margin="0,4,0,0">
-                                            <TextBlock>博客：</TextBlock>
+                                            <TextBlock Foreground="Black">博客：</TextBlock>
                                             <TextBlock Foreground="Blue" Cursor="Hand" Name="labBlogs" MouseUp="labBlogs_MouseUp">http://www.cnblogs.com/twzy</TextBlock>
                                         </WrapPanel>
 
                                         <WrapPanel Orientation="Horizontal"  Margin="0,4,0,0">
-                                            <TextBlock>NetAnalyzer官网：</TextBlock>
+                                            <TextBlock Foreground="Black">NetAnalyzer官网：</TextBlock>
                                             <TextBlock Foreground="Blue" Cursor="Hand" Name="labNetAnalyzer" MouseUp="labNetAnalyzer_MouseUp">http://twzy.sinaapp.com/</TextBlock>
                                         </WrapPanel>
                                     </StackPanel>
                                 </TabItem>
-                                <TabItem Header="组件信息">
+                                <TabItem Foreground="Black" Header="组件信息">
                                     <WrapPanel Orientation="Vertical" Margin="20,50,0,0">
                                         <Label Content="组件信息" Foreground="#FF6873E6" FontSize="20"/>
                                         <Label>Fluent Ribbon  https://github.com/fluentribbon/Fluent.Ribbon</Label>

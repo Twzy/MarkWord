@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.CodeCompletion;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Search;
@@ -27,6 +28,30 @@ namespace MarkWord
         public MarkEditer()
         {
             InitializeComponent();
+
+            itemList.AddRange(new AutoItem[]
+            {
+                new AutoItem{   Name = "# ", Descript = "标题1"},
+                new AutoItem{   Name = "## ", Descript = "标题2"},
+                new AutoItem{   Name = "### ", Descript = "标题3"},
+                new AutoItem{   Name = "#### ", Descript = "标题4"},
+                new AutoItem{   Name = "##### ", Descript = "标题5"},
+                new AutoItem{   Name = "###### ", Descript = "标题6"},
+                new AutoItem{   Name = "** **", Descript = "粗体"},
+                new AutoItem{   Name = "* *", Descript = "斜体"},
+                new AutoItem{   Name = "[Title](http://)", Descript = "超链接"},
+                new AutoItem{   Name = "![img](http://)", Descript = "图片"},
+                new AutoItem{   Name = "| |", Descript = "表格"},
+                new AutoItem{   Name = "`  `", Descript = "行内代码"},
+                new AutoItem{   Name = "``` ``` ", Descript = "代码块"},
+                new AutoItem{   Name = "> ", Descript = "引用"},
+                new AutoItem{   Name = "[toc]", Descript = "目录"},
+                new AutoItem{   Name = "---", Descript = "横线"},
+                //new AutoItem{   Name = "time", Descript = "时间"},
+                //new AutoItem{   Name = "签名", Descript = "签名"},
+            });
+            textEditor.TextArea.TextEntering += TextArea_TextEntering;
+
         }
 
         public WebDoc MarkDoc { get; set; }
@@ -38,6 +63,66 @@ namespace MarkWord
                 return;
             MarkDoc.LoadBody(this.textEditor.Text);
         }
+
+        #region 自动提示
+
+        public class AutoItem
+        {
+            public string Name { set; get; }
+            public string Descript { set; get; }
+        }
+
+
+        List<AutoItem> itemList = new List<AutoItem>();
+
+
+        CompletionWindow completionWindow;
+        private void TextArea_TextEntering(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text.Length > 0 && completionWindow != null && !char.IsLetterOrDigit(e.Text[0]))
+            {
+                completionWindow.CompletionList.RequestInsertion(e);
+            }
+        }
+
+        public void AutoComplete()
+        {
+            completionWindow = new CompletionWindow(textEditor.TextArea);
+
+            IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
+            foreach (var f in itemList)
+            {
+                data.Add(new MsCompletion(f.Name, f.Descript));
+            }
+
+
+            completionWindow.Show();
+            completionWindow.Closed += delegate
+            {
+                completionWindow = null;
+            };
+        }
+
+        //private void TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+        //{
+        //    if (e.Text == ">")
+        //    {
+        //        AutoComplete();
+        //    }
+        //}
+
+        private void TxtCode_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((e.KeyboardDevice.Modifiers & ModifierKeys.Control) == ModifierKeys.Control &&
+                e.Key == Key.Space)
+            {
+                AutoComplete();
+            }
+        }
+        #endregion
+
+
+
 
 
         #region Mark标记
@@ -191,7 +276,6 @@ namespace MarkWord
 
         #endregion
 
-
         #region 打印
         public void PrintMarkdown()
         {
@@ -253,6 +337,7 @@ namespace MarkWord
         }
         #endregion
 
+        #region 脚本
         public double ScrollViewerPositionPercentage
         {
             get
@@ -281,7 +366,7 @@ namespace MarkWord
                 MarkDoc.ScrollAuto(this.ScrollViewerPositionPercentage);
             }
         }
-
+        #endregion
 
         #region 查找
 

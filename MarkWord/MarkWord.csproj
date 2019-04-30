@@ -85,6 +85,7 @@
     <Compile Include="BLL\BlogsHelper.cs" />
     <Compile Include="BLL\FileManager.cs" />
     <Compile Include="BLL\HtmlHelper.cs" />
+    <Compile Include="MsCompletion.cs" />
     <Compile Include="Utils\ThemeStyle.cs" />
     <Compile Include="WinBlogsLogin.xaml.cs">
       <DependentUpon>WinBlogsLogin.xaml</DependentUpon>

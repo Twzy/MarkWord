@@ -21,6 +21,7 @@
 				          FontFamily="Consolas"
 				          FontSize="14" 
                           WordWrap="True"
+                          PreviewKeyUp="TxtCode_KeyUp"
                           ShowLineNumbers="True" Margin="20" TextChanged="textEditor_TextChanged" />
             </Grid>
         </Border>
