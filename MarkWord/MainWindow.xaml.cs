@@ -430,6 +430,10 @@ namespace MarkWord
             markEdit.ToggleAsymmetricMarkdownFormatting("> ");
         }
 
+        private void ButtonMarkTOC_Click(object sender, RoutedEventArgs e)
+        {
+            markEdit.textEditor.SelectedText = "[toc]";
+        }
         private void buttonMarkUL_Click(object sender, RoutedEventArgs e)
         {
             markEdit.ToggleAsymmetricMarkdownFormatting("+ ");
@@ -1024,5 +1028,7 @@ namespace MarkWord
         {
             System.Diagnostics.Process.Start("https://github.com/Twzy/MarkWord");
         }
+
+
     }
 }
