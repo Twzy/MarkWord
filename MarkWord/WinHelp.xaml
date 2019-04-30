@@ -1,0 +1,23 @@
+﻿<Window x:Class="MarkWord.WinHelp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarkWord"
+        mc:Ignorable="d"
+        ShowInTaskbar="False"
+        WindowStartupLocation="CenterOwner"
+        WindowStyle="ToolWindow"
+        Title="新功能" Height="600" Width="400">
+    <ScrollViewer Margin="20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <TextBlock LineHeight="30">
+            <Run>1.增加MarkDown目录功能 使用命令:[toc]</Run>
+            <LineBreak/>
+           <Run>2.编辑器增加快捷提示功能，使用 Ctrl+空格键 可快速输入。</Run>
+            <LineBreak/>
+           <Run>3.使用新的界面框架，解决自某些情况下出现黑边的问题。</Run>
+           <LineBreak/>
+           <Run>4.修复通过文件列表打开的文件，还提示保存的问题。</Run>
+        </TextBlock>
+    </ScrollViewer>
+</Window>

@@ -97,6 +97,9 @@
       <DependentUpon>MarkEditer.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\PublishInfoHandler.cs" />
+    <Compile Include="WinHelp.xaml.cs">
+      <DependentUpon>WinHelp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinTableConvert.xaml.cs">
       <DependentUpon>WinTableConvert.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="MarkEditer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinHelp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -352,6 +359,7 @@
     <Resource Include="Images\filetype_pdf.png" />
     <Resource Include="Images\BlueTheme.png" />
     <Resource Include="icon.ico" />
+    <Resource Include="Images\new.png" />
     <Content Include="Resources\DefaultStyle.css" />
   </ItemGroup>
   <ItemGroup>

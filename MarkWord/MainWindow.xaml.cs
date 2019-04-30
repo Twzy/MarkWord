@@ -1029,6 +1029,11 @@ namespace MarkWord
             System.Diagnostics.Process.Start("https://github.com/Twzy/MarkWord");
         }
 
-
+        private void BtnHelper_Click(object sender, RoutedEventArgs e)
+        {
+            WinHelp wh = new WinHelp();
+            wh.Owner = this;
+            wh.ShowDialog();
+        }
     }
 }

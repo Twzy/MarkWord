@@ -450,6 +450,10 @@
                     <Fluent:ToggleButton GroupName="displayMode"  Name="btnScanling" Header="预览"   SizeDefinition="Large" LargeIcon="Images\both.png" Click="btnScanling_Click"/>
 
                 </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox  Header="信息">
+                    <Fluent:Button Header="最新信息" SizeDefinition="Large" LargeIcon="Images\new.png" Icon="Images\new.png" Name="btnHelper" Click="BtnHelper_Click" />
+                </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
 
             <Fluent:RibbonTabItem Header="浏览"  Name="ribbonItemScank">
