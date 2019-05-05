@@ -114,6 +114,7 @@ namespace MarkWord
         private void TxtCode_KeyUp(object sender, KeyEventArgs e)
         {
             if ((e.KeyboardDevice.Modifiers & ModifierKeys.Control) == ModifierKeys.Control &&
+                (e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift &&
                 e.Key == Key.Space)
             {
                 AutoComplete();

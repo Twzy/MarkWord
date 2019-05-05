@@ -34,6 +34,7 @@ body {
 
  img {
   border: 0;
+  max-width:600px;
 }
 
  hr {
@@ -407,10 +408,6 @@ body {
   background-color: #f8f8f8;
 }
 
- img {
-  max-width: 100%;
-  box-sizing: border-box;
-}
 
  code {
   padding: 0;

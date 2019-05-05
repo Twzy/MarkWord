@@ -87,6 +87,28 @@ h6 {
   font-size: 14px;
 }
 
+.title_1{
+  font-size: 22px;
+  color:#4183C4;
+}
+.title_2{
+  font-size: 20px;
+  color: #4183C4;
+}
+.title_3{
+  font-size: 18px;
+  color: #4183C4;
+}
+.title_4{
+  font-size: 16px;
+  color: #4183C4;
+}
+.title_5{
+  font-size: 14px;
+  color: #4183C4;
+}
+
+
 body>h2:first-child, body>h1:first-child, body>h1:first-child+h2, body>h3:first-child, body>h4:first-child, body>h5:first-child, body>h6:first-child {
   margin-top: 0;
   padding-top: 0;
@@ -289,33 +311,41 @@ color: #666;
     border: 1px solid #cad9ea;
     padding: 0 2em 0;
 }
-
+
+
 /* IMAGES
 =============================================================================*/
 
 img {
-  max-width: 100%
+  max-width: 600px;
 }
 
 
 </style>
+<script type='text/javascript'>
+function updatePageContent(msg){ document.body.innerHTML= msg;} 
+function scrollToPageContent(value){  window.scrollTo(0, value * (document.body.scrollHeight - document.body.clientHeight)); } 
+</script>
 </head><body>
-<h2>MarkWord语法</h2>
-<h3>1.标题</h3>
+<a name='A_1'></a><h3>MarkWord语法</h3>
+<hr />
+<a name='A_2'></a><h3>1.目录</h3>
+<p>[toc<a/>]</p>
+<p>示例</p>
+<p><ul>
+<li> <a href='#A_1' class='title_3' >MarkWord语法</a> </li><li> <a href='#A_2' class='title_3' >1.目录</a> </li><li> <a href='#A_3' class='title_3' >2.标题</a> </li><li> <a href='#A_4' class='title_3' >3.引用</a> </li><li> <a href='#A_5' class='title_3' >4.格式</a> </li><li> <a href='#A_6' class='title_3' >5.超链接</a> </li><li> <a href='#A_7' class='title_3' >6.图片</a> </li><li> <a href='#A_8' class='title_3' >7.表格</a> </li><li> <a href='#A_9' class='title_3' >8.列表</a> </li><li> <a href='#A_10' class='title_3' >9.代码</a> </li><li> <a href='#A_11' class='title_3' >10.分割线</a> </li></ul>
+</p>
+<hr />
+<a name='A_3'></a><h3>2.标题</h3>
 <pre><code># 一级标题
-## 一级标题
-### 一级标题
+## 二级级标题
+### 三级标题
 ……
 
 (共6级)
 </code></pre>
-<p>示例：</p>
-<pre><code># 一级标题
-## 二级标题
-### 三级标题
-</code></pre>
 <hr />
-<h3>2.引用</h3>
+<a name='A_4'></a><h3>3.引用</h3>
 <pre><code>&gt; 我是引用
 </code></pre>
 <p>示例：</p>
@@ -323,22 +353,22 @@ img {
 <p>我是引用</p>
 </blockquote>
 <hr />
-<h3>3.格式</h3>
+<a name='A_5'></a><h3>4.格式</h3>
 <p><code>**粗体**</code>  <strong>粗体</strong><br />
 <code>*斜体*</code>   <em>斜体</em></p>
 <hr />
-<h3>4.超链接</h3>
+<a name='A_6'></a><h3>5.超链接</h3>
 <pre><code>[墨云官网](http://www.cnblogs.com/twzy)
 </code></pre>
 <p>示例：<br />
 <a href="http://www.cnblogs.com/twzy">墨云官网</a></p>
 <hr />
-<h3>5.图片</h3>
+<a name='A_7'></a><h3>6.图片</h3>
 <pre><code>![NetAnalyzer二维码](http://images2015.cnblogs.com/blog/483434/201603/483434-20160312095959757-1018801580.jpg)
 </code></pre>
 <p>示例：<br />
-<img src="imges/imagefile.jpg" alt="NetAnalyzer二维码" /></p>
-<h3>6.表格</h3>
+<img src="http://images2015.cnblogs.com/blog/483434/201603/483434-20160312095959757-1018801580.jpg" alt="NetAnalyzer二维码" /></p>
+<a name='A_8'></a><h3>7.表格</h3>
 <pre><code>|标题1|标题1|标题1|标题1|
 |1791|47.65|24.25|2761680|
 |44|41.14|24.22|32495|
@@ -348,7 +378,7 @@ img {
 <p>示例：
 <table class="table table-bordered table-striped"><tr><th>标题1</th><th>标题1</th><th>标题1</th><th>标题1</th></tr><tr><td>1791</td><td>47.65</td><td>24.25</td><td>2761680</td></tr><tr><td>44</td><td>41.14</td><td>24.22</td><td>32495</td></tr><tr><td>25</td><td>41.25</td><td>20.35</td><td>1978</td></tr></table></p>
 <hr />
-<h3>7.列表</h3>
+<a name='A_9'></a><h3>8.列表</h3>
 <pre><code>+ 项目
 + 项目
 + 项目
@@ -370,7 +400,7 @@ img {
 <li>项目</li>
 </ol>
 <hr />
-<h3>8.代码</h3>
+<a name='A_10'></a><h3>9.代码</h3>
 <pre><code> `行内代码` 
 </code></pre>
 <p>示例：
@@ -383,7 +413,7 @@ img {
 <pre><code>我是块代码
 </code></pre>
 <hr />
-<h3>9.分割线</h3>
+<a name='A_11'></a><h3>10.分割线</h3>
 <p><code>---</code>
 示例：</p>
 <hr />
