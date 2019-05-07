@@ -32,9 +32,16 @@ namespace MarkWord
 
             Blogs = new BlogsInfo();//博客配置信息 
             CurrBlogsDocument = new BlogsDocumentInfo();//当前选择的文章的信息（主要用于草稿更新）
-
+            imgcacheDir = System.IO.Path.Combine(System.Windows.Forms.Application.StartupPath, "imgcache");
+            if (!System.IO.Directory.Exists(imgcacheDir))
+            {
+                System.IO.Directory.CreateDirectory(imgcacheDir);
+            }
 
         }
+
+
+        public static string imgcacheDir { get; set; }
 
         /// <summary>
         /// 当前选择的文章的信息（主要用于草稿更新）

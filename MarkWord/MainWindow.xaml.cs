@@ -265,6 +265,7 @@ namespace MarkWord
         private void btnPaste_Click(object sender, RoutedEventArgs e)
         {
             markEdit.textEditor.Paste();
+            ClipboardImge();
         }
         private void btnCopy_Click(object sender, RoutedEventArgs e)
         {
@@ -396,7 +397,8 @@ namespace MarkWord
             var tmpResult = BLL.FileManager.GetImgFilePath();
             if (!string.IsNullOrEmpty(tmpResult))
             {
-                markEdit.textEditor.SelectedText = string.Format("![img](file:///{0})", tmpResult.Replace('\\', '/'));
+
+                markEdit.textEditor.SelectedText = string.Format("![img](file:///{0})", System.Web.HttpUtility.UrlEncode(tmpResult));
             }
         }
 
@@ -909,6 +911,14 @@ namespace MarkWord
 
                         break;
 
+                    case Key.V:
+
+                        //针对图片的粘贴
+
+                        ClipboardImge();
+                        break;
+
+
                     #region markdown快捷键
                     #region 标题
                     case Key.NumPad1:
@@ -1010,17 +1020,37 @@ namespace MarkWord
             }
         }
 
+        private void ClipboardImge()
+        {
+            var img = System.Windows.Forms.Clipboard.GetImage();
+            //判断从文件读入图片
+            if (img == null)
+            {
+                var plst = Clipboard.GetFileDropList();
+                if (plst != null && plst.Count > 0)
+                {
+                    try
+                    {
+                        img = System.Drawing.Image.FromFile(plst[0]);
+                    }
+                    catch (Exception ex)
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    return;
+                }
+            }
 
-
-
-
-
-
-
-
-
-
-
+            if (img != null)
+            {
+                string filePath = Config.imgcacheDir + "\\" + System.IO.Path.GetRandomFileName() + ".png";
+                img.Save(filePath, System.Drawing.Imaging.ImageFormat.Png);
+                markEdit.textEditor.SelectedText = string.Format("![img](file:///{0})", System.Web.HttpUtility.UrlEncode(filePath));
+            }
+        }
 
         #endregion
 
