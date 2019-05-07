@@ -89,7 +89,7 @@
                                             </Label.Background>
                                         </Label>
                                         <TextBlock x:Name="label_Copy3"  Text="MarkWord" Foreground="#FF6873E6" FontSize="20"  Margin="0,10,0,0"/>
-                                        <TextBlock  Margin="0,10,0,0">版本：2.0</TextBlock>
+                                        <TextBlock  Margin="0,10,0,0">版本：2.5</TextBlock>
                                         <TextBlock  Margin="0,4,0,0">作者：墨云软件</TextBlock>
 
                                         <WrapPanel Orientation="Horizontal" Margin="0,10,0,0">
@@ -378,12 +378,12 @@
                                        Icon="Images\multilevellist16.png"
                                        HorizontalAlignment="Left"
                                        SizeDefinition="Small" Click="ButtonMarkTOC_Click"  ToolTip="目录 Ctr+T "  KeyTip="MT"/>
-                        
+
                         <Fluent:Button x:Name="buttonMarkUL"
                                        Icon="Images\unorderedlist16.png"
                                        HorizontalAlignment="Left"
                                        SizeDefinition="Small" Click="buttonMarkUL_Click"  ToolTip="无序列表 Ctr+U "  KeyTip="MU"/>
-                        
+
                         <Fluent:Button x:Name="buttonMarkOL"
                                        Icon="Images\orderedlist16.png"
                                        HorizontalAlignment="Left"

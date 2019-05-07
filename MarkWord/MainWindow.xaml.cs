@@ -729,8 +729,9 @@ namespace MarkWord
                 }
                 BLL.FileManager.isChangeFlag = false;
             }
-
+            this.Title = Config.Title;
             markEdit.textEditor.Clear();
+            BLL.FileManager.SavePath = "";
             markDoc.LoadAllHTML(markEdit.textEditor.Text);
             Config.CurrBlogsDocument = new BlogsDocumentInfo();
         }

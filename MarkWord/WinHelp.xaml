@@ -11,13 +11,19 @@
         Title="新功能" Height="600" Width="400">
     <ScrollViewer Margin="20" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <TextBlock LineHeight="30">
-            <Run>1.增加MarkDown目录功能 使用命令:[toc]</Run>
+            <Run>1.增加图片粘贴功能，可以直接粘贴截图或图片文件。</Run>
+            <LineBreak/>         
+            <Run>2.增加MarkDown目录功能 使用命令:[toc]</Run>
+            <LineBreak/>
+            <Run>3.可以使用命令:[toc -2] 跳过指定个数的目录，如改命令将自动忽略前面的两个标题</Run>
             <LineBreak/>
            <Run>2.编辑器增加快捷提示功能，使用 Ctrl+空格键 可快速输入。</Run>
             <LineBreak/>
            <Run>3.使用新的界面框架，解决自某些情况下出现黑边的问题。</Run>
            <LineBreak/>
            <Run>4.修复通过文件列表打开的文件，还提示保存的问题。</Run>
+                 <LineBreak/>
+           <Run>5.修复新建文件后，标题显示问题。</Run>
         </TextBlock>
     </ScrollViewer>
 </Window>
