@@ -1,6 +1,11 @@
 # MarkWord
 a Markdown editer. powered by 墨云软件
 #### Characteristic:
+update at 2019-05
++ Paste the image directly through the clipboard 
++ add [toc] list zhe catalogue
++ use [toc -2] list zhe catalogue with skip 2 item
+---
 + Use the CommonMark syntax
 + Office2013 Style
 + Can publish blog (based on metablogs interface)
