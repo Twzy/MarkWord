@@ -92,6 +92,9 @@
     <Compile Include="WinBlogsLogin.xaml.cs">
       <DependentUpon>WinBlogsLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WinDeepin.xaml.cs">
+      <DependentUpon>WinDeepin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WinFindReplaceDialog.xaml.cs">
       <DependentUpon>WinFindReplaceDialog.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,10 @@
       <DependentUpon>WinUploadProcess.xaml</DependentUpon>
     </Compile>
     <Page Include="WinBlogsLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WinDeepin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

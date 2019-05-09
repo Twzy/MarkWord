@@ -17,13 +17,13 @@
             <LineBreak/>
             <Run>3.可以使用命令:[toc -2] 跳过指定个数的目录，如改命令将自动忽略前面的两个标题</Run>
             <LineBreak/>
-           <Run>2.编辑器增加快捷提示功能，使用 shift+Ctrl+空格键 可快速输入。</Run>
+           <Run>4.编辑器增加快捷提示功能，使用 shift+Ctrl+空格键 可快速输入。</Run>
             <LineBreak/>
-           <Run>3.使用新的界面框架，解决自某些情况下出现黑边的问题。</Run>
+           <Run>5.使用新的界面框架，解决自某些情况下出现黑边的问题。</Run>
            <LineBreak/>
-           <Run>4.修复通过文件列表打开的文件，还提示保存的问题。</Run>
+           <Run>6.修复通过文件列表打开的文件，还提示保存的问题。</Run>
                  <LineBreak/>
-           <Run>5.修复新建文件后，标题显示问题。</Run>
+           <Run>7.修复新建文件后，标题显示问题。</Run>
         </TextBlock>
     </ScrollViewer>
 </Window>
