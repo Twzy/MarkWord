@@ -6,7 +6,15 @@
         xmlns:local="clr-namespace:MarkWord"
         mc:Ignorable="d"
         Title="WinDeepin" Height="450" Width="800">
-    <Grid>
-        <local:MarkEditer x:Name="markEdit" Grid.Column="0" Margin="0,0,4,0"   />
+    <Grid Background="White">
+        <Border  BorderBrush="DimGray" BorderThickness="1"/>
+
+        <local:MarkEditer x:Name="markEdit" Grid.Column="0" Margin="10"/>
+
+
+
+        <!--<Popup Name="pop1" StaysOpen="True" IsOpen="True" >
+            <Canvas Background="LightBlue" Width="100" Height="100"/>
+        </Popup>-->
     </Grid>
 </Window>

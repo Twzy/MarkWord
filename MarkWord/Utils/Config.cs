@@ -43,6 +43,9 @@ namespace MarkWord
 
         public static string imgcacheDir { get; set; }
 
+        public static string AutoListDir { get; set; }
+
+        public static List<AutoItem> CustomAutoList { get; set; } = new List<AutoItem>();
         /// <summary>
         /// 当前选择的文章的信息（主要用于草稿更新）
         /// </summary>

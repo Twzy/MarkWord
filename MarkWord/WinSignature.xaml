@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:MarkWord"
         mc:Ignorable="d"
         Title="签名" Height="400" Width="500" WindowStyle="ToolWindow"  ShowInTaskbar="False"
-                      WindowStartupLocation="CenterOwner" ResizeMode="NoResize">
+                      WindowStartupLocation="CenterOwner" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -34,7 +34,7 @@
                 </TextBox.ContextMenu>
             </TextBox>
         </Border>
-        <Button x:Name="btnOk" Grid.Row="2"  Content="设置" HorizontalAlignment="Left"  Margin="300,0,0,0"  VerticalAlignment="Top" Width="75" Click="btnOk_Click" Background="White"/>
-        <Button x:Name="btnCancel" Grid.Row="2" Content="取消" HorizontalAlignment="Left"  Margin="400,0,0,0"  VerticalAlignment="Top" Width="75" Click="btnCancel_Click" Background="White" />
+        <Button x:Name="btnOk" Grid.Row="2"  Content="设置" HorizontalAlignment="Right"  Margin="0,0,100,0"  VerticalAlignment="Top" Width="75" Click="btnOk_Click" Background="White"/>
+        <Button x:Name="btnCancel" Grid.Row="2" Content="取消" HorizontalAlignment="Right"  Margin="0,0,10,0"  VerticalAlignment="Top" Width="75" Click="btnCancel_Click" Background="White" />
     </Grid>
 </Fluent:RibbonWindow>

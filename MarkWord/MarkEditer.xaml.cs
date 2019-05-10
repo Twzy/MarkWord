@@ -29,29 +29,10 @@ namespace MarkWord
         {
             InitializeComponent();
 
-            itemList.AddRange(new AutoItem[]
-            {
-                new AutoItem{   Name = "# ", Descript = "标题1"},
-                new AutoItem{   Name = "## ", Descript = "标题2"},
-                new AutoItem{   Name = "### ", Descript = "标题3"},
-                new AutoItem{   Name = "#### ", Descript = "标题4"},
-                new AutoItem{   Name = "##### ", Descript = "标题5"},
-                new AutoItem{   Name = "###### ", Descript = "标题6"},
-                new AutoItem{   Name = "** **", Descript = "粗体"},
-                new AutoItem{   Name = "* *", Descript = "斜体"},
-                new AutoItem{   Name = "[Title](http://)", Descript = "超链接"},
-                new AutoItem{   Name = "![img](http://)", Descript = "图片"},
-                new AutoItem{   Name = "| |", Descript = "表格"},
-                new AutoItem{   Name = "`  `", Descript = "行内代码"},
-                new AutoItem{   Name = "``` ``` ", Descript = "代码块"},
-                new AutoItem{   Name = "> ", Descript = "引用"},
-                new AutoItem{   Name = "[toc]", Descript = "目录"},
-                new AutoItem{   Name = "---", Descript = "横线"},
-                //new AutoItem{   Name = "time", Descript = "时间"},
-                //new AutoItem{   Name = "签名", Descript = "签名"},
-            });
-            textEditor.TextArea.TextEntering += TextArea_TextEntering;
 
+            textEditor.TextArea.TextEntering += TextArea_TextEntering;
+            textEditor.TextArea.TextEntered+= TextArea_TextEntered;
+            loadAutoLst();
         }
 
         public WebDoc MarkDoc { get; set; }
@@ -66,14 +47,37 @@ namespace MarkWord
 
         #region 自动提示
 
-        public class AutoItem
+        List<AutoItem> itemList_all = new List<AutoItem>();
+        List<AutoItem> itemList_title = new List<AutoItem>();
+        List<AutoItem> itemList_Custom = new List<AutoItem>();
+
+        public void loadAutoLst()
         {
-            public string Name { set; get; }
-            public string Descript { set; get; }
+            itemList_all.AddRange(new AutoItem[]
+            {
+                new AutoItem{Name="# 标题1",  Value = "# ", Descript = "标题1"},
+                new AutoItem{Name="## 标题2",  Value = "## ", Descript = "标题2"},
+                new AutoItem{Name="### 标题3",  Value = "### ", Descript = "标题3"},
+                new AutoItem{Name="#### 标题4",  Value = "#### ", Descript = "标题4"},
+                new AutoItem{Name="##### 标题5",  Value = "##### ", Descript = "标题5"},
+                new AutoItem{Name="###### 标题6",  Value = "###### ", Descript = "标题6"},
+                new AutoItem{Name="**粗体** ",  Value = "**{$pos}**", Descript = "粗体"},
+                new AutoItem{Name="*斜体*",  Value = "*{$pos}*", Descript = "斜体"},
+                new AutoItem{Name="[Title](http://{$pos}) 超链接",  Value = "[Title](http://)", Descript = "超链接"},
+                new AutoItem{Name="![img](http://{$pos}) 图片",  Value = "![img](http://)", Descript = "图片"},
+                new AutoItem{Name="|表格|",  Value = "|{$pos}| |\r\n| | |", Descript = "表格"},
+                new AutoItem{Name="`` 行内代码",  Value = "`{$pos}`", Descript = "行内代码"},
+                new AutoItem{Name="``` ``` 代码块",  Value = "```\r\n{$pos}\r\n``` ", Descript = "代码块"},
+                new AutoItem{Name="> 引用",  Value = "> ", Descript = "引用"},
+                new AutoItem{Name="[toc] 目录",  Value = "[toc]", Descript = "目录"},
+                new AutoItem{Name="[toc -1] 目录 跳过1个",  Value = "[toc -1]", Descript = "目录 跳过前面1个标题"},
+                new AutoItem{Name="[toc -2] 目录 跳过2个",  Value = "[toc -2]", Descript = "目录 跳过前面2个标题"},
+                new AutoItem{Name="--- 横线",  Value = "---", Descript = "横线"},
+                new AutoItem{Name = "@time", Value="{$time}",Descript = "时间"},
+                new AutoItem{Name = "@date", Value="{$date}",Descript = "时间"},
+                });
         }
 
-
-        List<AutoItem> itemList = new List<AutoItem>();
 
 
         CompletionWindow completionWindow;
@@ -85,14 +89,14 @@ namespace MarkWord
             }
         }
 
-        public void AutoComplete()
+        public void AutoComplete(List<AutoItem> autoList)
         {
             completionWindow = new CompletionWindow(textEditor.TextArea);
 
             IList<ICompletionData> data = completionWindow.CompletionList.CompletionData;
-            foreach (var f in itemList)
+            foreach (var f in autoList)
             {
-                data.Add(new MsCompletion(f.Name, f.Descript));
+                data.Add(new AutoCompletion(f.Name, f.Value, f.Descript));
             }
 
 
@@ -103,21 +107,41 @@ namespace MarkWord
             };
         }
 
-        //private void TextArea_TextEntered(object sender, TextCompositionEventArgs e)
-        //{
-        //    if (e.Text == ">")
-        //    {
-        //        AutoComplete();
-        //    }
-        //}
+        private void TextArea_TextEntered(object sender, TextCompositionEventArgs e)
+        {
+            if (e.Text == "#" ||
+                e.Text == "*" ||
+                e.Text == "[" ||
+                e.Text == "!" ||
+                e.Text == "`" ||
+                e.Text == "-"||
+                e.Text == "@")
+            {
+                var tmpList = new List<AutoItem>();
+                foreach (var i in itemList_all)
+                {
+                    if (i.Name.StartsWith(e.Text))
+                    {
+                        tmpList.Add(i);
+                    }
+                }
 
+                AutoComplete(tmpList);
+            }
+            //else if (e.Text == "@")
+            //{
+            //    AutoComplete(itemList_Custom);
+            //}
+        }
+
+        //执行全部提示
         private void TxtCode_KeyUp(object sender, KeyEventArgs e)
         {
             if ((e.KeyboardDevice.Modifiers & ModifierKeys.Control) == ModifierKeys.Control &&
                 (e.KeyboardDevice.Modifiers & ModifierKeys.Shift) == ModifierKeys.Shift &&
                 e.Key == Key.Space)
             {
-                AutoComplete();
+                AutoComplete(itemList_all);
             }
         }
         #endregion
