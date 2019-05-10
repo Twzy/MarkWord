@@ -1,20 +1,34 @@
-﻿<Window x:Class="MarkWord.WinDeepin"
+﻿<Fluent:RibbonWindow  x:Class="MarkWord.WinDeepin"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Fluent="clr-namespace:Fluent;assembly=Fluent"
         xmlns:local="clr-namespace:MarkWord"
         mc:Ignorable="d"
-        Title="WinDeepin" Height="450" Width="800">
-    <Grid Background="White">
-        <Border  BorderBrush="DimGray" BorderThickness="1"/>
+        Title="沉浸模式" Height="450" Width="800" WindowState="Maximized">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Fluent:Ribbon Grid.Row="0" IsMinimized="True"
+                       IsAutomaticCollapseEnabled="False"
+                       IsCollapsed="True"
+                       IsQuickAccessToolBarVisible="False"
+                       CanCustomizeQuickAccessToolBar="False"
+                       CanCustomizeRibbon="False"
+                       CanQuickAccessLocationChanging="False"
+                       ContentGapHeight="2" />
 
-        <local:MarkEditer x:Name="markEdit" Grid.Column="0" Margin="10"/>
+        <local:MarkEditer x:Name="markEdit" Grid.Row="1" Margin="10"/>
 
 
-
-        <!--<Popup Name="pop1" StaysOpen="True" IsOpen="True" >
-            <Canvas Background="LightBlue" Width="100" Height="100"/>
-        </Popup>-->
+        <Fluent:StatusBar Grid.Row="2" >
+            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Left">
+                <TextBlock Text="就绪" Margin="4,0,0,0" Name="LabStatus"/>
+            </Fluent:StatusBarItem>
+        </Fluent:StatusBar>
     </Grid>
-</Window>
+</Fluent:RibbonWindow>

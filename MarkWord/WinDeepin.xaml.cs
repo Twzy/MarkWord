@@ -16,7 +16,7 @@ namespace MarkWord
     /// <summary>
     /// WinDeepin.xaml 的交互逻辑
     /// </summary>
-    public partial class WinDeepin : Window
+    public partial class WinDeepin
     {
         public WinDeepin()
         {

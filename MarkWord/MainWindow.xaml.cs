@@ -505,6 +505,35 @@ namespace MarkWord
             markEdit.scrViewer.ScrollToEnd();
         }
 
+
+        private void btnFullSrceen_Click(object sender, RoutedEventArgs e)
+        {
+            Config.Common.WorkType = WorkType.Edit;
+            SetWorkArea();
+            ribbonToolbar.IsCollapsed = true;
+            ribbonToolbar.IsQuickAccessToolBarVisible = false;
+            ribbonToolbar.CanCustomizeQuickAccessToolBar = false;
+            ribbonToolbar.CanCustomizeRibbon = false;
+            ribbonToolbar.CanQuickAccessLocationChanging = false;
+
+            stat1.Visibility = stat3.Visibility = stat4.Visibility = Visibility.Collapsed;
+            stat2.Visibility = Visibility.Visible;
+        }
+        private void BtnCloseDeepin_Click(object sender, RoutedEventArgs e)
+        {
+            Config.Common.WorkType = WorkType.Edit;
+            SetWorkArea();
+            ribbonToolbar.IsCollapsed = false;
+            ribbonToolbar.IsQuickAccessToolBarVisible = true;
+            ribbonToolbar.CanCustomizeQuickAccessToolBar = true;
+            ribbonToolbar.CanCustomizeRibbon = true;
+            ribbonToolbar.CanQuickAccessLocationChanging = true;
+
+            stat1.Visibility = stat3.Visibility = stat4.Visibility = Visibility.Visible;
+            stat2.Visibility = Visibility.Collapsed;
+        }
+
+
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             Config.Common.WorkType = WorkType.Edit;
@@ -616,10 +645,6 @@ namespace MarkWord
         #endregion
 
         #region  视图
-        private void btnFullSrceen_Click(object sender, RoutedEventArgs e)
-        {
-            ribbonToolbar.IsMinimized = !ribbonToolbar.IsMinimized;
-        }
 
         private void btnTheme2013_Click(object sender, RoutedEventArgs e)
         {
@@ -1066,5 +1091,7 @@ namespace MarkWord
             wh.Owner = this;
             wh.ShowDialog();
         }
+
+
     }
 }

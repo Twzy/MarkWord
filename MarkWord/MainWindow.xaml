@@ -22,7 +22,7 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Fluent:Ribbon Grid.Row="0" Name="ribbonToolbar"  >
+        <Fluent:Ribbon Grid.Row="0" x:Name="ribbonToolbar"  >
             <Fluent:Ribbon.QuickAccessItems>
                 <Fluent:QuickAccessMenuItem IsChecked="True">
                     <Fluent:Button Header="保存" Icon="Images\Save.png" Click="btnSaveDoc_Click"/>
@@ -445,6 +445,8 @@
                 </Fluent:RibbonGroupBox>
 
                 <Fluent:RibbonGroupBox Header="模式">
+                    <Fluent:Button Name="btnFullSrceen" Header="沉浸模式" SizeDefinition="Large" LargeIcon="Images\full.png" Click="btnFullSrceen_Click" ></Fluent:Button>
+                    <Separator/>
                     <Fluent:ToggleButton GroupName="displayMode" Name="btnEdit" Header="编辑" SizeDefinition="Large" LargeIcon="Images\pencil_32.png" Click="btnEdit_Click" />
                     <Fluent:ToggleButton GroupName="displayMode"  Name="btnDisplay" Header="查看"  SizeDefinition="Large" LargeIcon="Images\book_open.png" Click="btnDisplay_Click"/>
                     <Fluent:ToggleButton GroupName="displayMode"  Name="btnScanling" Header="预览"   SizeDefinition="Large" LargeIcon="Images\both.png" Click="btnScanling_Click"/>
@@ -497,10 +499,7 @@
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
 
-            <Fluent:RibbonTabItem Header="视图">
-                <Fluent:RibbonGroupBox Header="窗口">
-                    <Fluent:Button Name="btnFullSrceen" Header="全屏模式" SizeDefinition="Large" LargeIcon="Images\full.png" Click="btnFullSrceen_Click" ></Fluent:Button>
-                </Fluent:RibbonGroupBox>
+            <Fluent:RibbonTabItem Header="视图" Visibility="Collapsed">
                 <Fluent:RibbonGroupBox Header="主题" Visibility="Collapsed">
                     <Fluent:ToggleButton Name="btnTheme2013" GroupName="GroupTheme" Header="Office 2013" SizeDefinition="Middle" Icon="Images\SilverTheme.png" IsChecked="True" Click="btnTheme2013_Click"/>
                     <Fluent:ToggleButton Name="btnTheme2010" GroupName="GroupTheme" Header="Office 2010" SizeDefinition="Middle" Icon="Images\BlueTheme.png" Click="btnTheme2010_Click"/>
@@ -527,11 +526,21 @@
 
 
         <Fluent:StatusBar Grid.Row="2" >
-            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Left">
+            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Left" x:Name="stat1">
                 <TextBlock Text="就绪" Margin="4,0,0,0" Name="LabStatus"/>
             </Fluent:StatusBarItem>
 
-            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Right">
+            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Right" x:Name="stat2" Visibility="Collapsed">
+                <Button Name="btnCloseDeepin"
+                        Content="退出沉浸模式"
+                        Background="{Binding ElementName=LabStatus,Path=Background}" 
+                        Foreground="{Binding ElementName=LabStatus,Path=Foreground}"  
+                        Template="{DynamicResource StatusButtonTemplate}"
+                        Click="BtnCloseDeepin_Click"
+                        Margin="10,0,0,0"></Button>
+            </Fluent:StatusBarItem>
+
+            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Right" x:Name="stat3">
                 <Button Name="btnEditSwitch"
                         Content="浏览"
                         Background="{Binding ElementName=LabStatus,Path=Background}" 
@@ -540,7 +549,7 @@
                        
                         Margin="10,0,0,0"></Button>
             </Fluent:StatusBarItem>
-            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Right">
+            <Fluent:StatusBarItem Value="150" HorizontalAlignment="Right" x:Name="stat4">
                 <Button Name="btnGetSource"
                         Click="btnGetSource_Click"
                         Content="下载源码"
